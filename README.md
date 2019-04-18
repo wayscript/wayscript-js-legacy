@@ -18,10 +18,10 @@ If you use npm:
 npm install wayscript
 ```
 
-Or load directly:
+Or load directly from CDN:
 
 ```html
-<script src="https://cdn.wayscript.com/static/js/wayscript.0.0.1.js"></script>
+<script src="https://cdn.wayscript.com/static/js/api/wayscript.0.0.1.min.js"></script>
 ```
 
 ## Basic Usage
@@ -31,11 +31,7 @@ Or load directly:
 2. Run WayScript programs from your JavaScript code:
 
 ```javascript
-import WayScript from "wayscript";
-
-const apiKey = 'YOUR_API_KEY';
-
-const wayscript = WayScript( apiKey );
+wayscript.apiKey = 'YOUR_API_KEY';
 
 // Run a program by id
 let programId = 1234;
@@ -51,6 +47,12 @@ wayscript.runProgram( programId, [ ], true );
 // Run a program asynchronously with variables
 wayscript.runProgram( programId, variables, true );
 
-// Get the response from the server
-let response = wayscript.runProgram( programId );
+// Get the response (synchronously or asynchronously)
+wayscript.onSuccess = function( responseText ) {
+  console.log( responseText );
+};
+wayscript.onError = function( statusText ) {
+  console.log( statusText );
+};
+wayscript.runProgram( programId );
 ```
