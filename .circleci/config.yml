@@ -1,0 +1,17 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: circleci/node:current
+    working_directory: ~/wayscript-js
+    steps:
+      - checkout
+      - run:
+          name: update-npm
+          command: 'sudo npm install -g npm@latest'
+      - run:
+          name: install-npm
+          command: npm install
+      - run:
+          name: test
+          command: npm test
