@@ -1,4 +1,4 @@
-# [<img src="https://user-images.githubusercontent.com/31461850/53454621-a1b39500-39dc-11e9-9b3c-276451d42437.png" width="155px" alt="WayScript" align="center">](https://wayscript.com) Python SDK
+# [<img src="https://user-images.githubusercontent.com/31461850/53454621-a1b39500-39dc-11e9-9b3c-276451d42437.png" width="155px" alt="WayScript" align="center">](https://wayscript.com) JS
 
 [![npm version](https://img.shields.io/npm/v/wayscript.svg)](https://www.npmjs.com/package/wayscript/) [![CircleCI Status](https://circleci.com/gh/wayscript/wayscript-js/tree/master.svg?style=shield)](https://circleci.com/gh/wayscript/wayscript-js/tree/master)
 
@@ -41,18 +41,18 @@ wayscript.runProgram( programId );
 let variables = [ 'one', 'two', 'three' ];
 wayscript.runProgram( programId, variables );
 
-// Run a program asynchronously without variables
-wayscript.runProgram( programId, [ ], true );
+// Run a program without variables
+wayscript.runProgram( programId, [ ] );
 
-// Run a program asynchronously with variables
-wayscript.runProgram( programId, variables, true );
+// Run a program with variables
+wayscript.runProgram( programId, variables );
 
 // Get the response (synchronously or asynchronously)
 wayscript.onSuccess = function( responseText ) {
   console.log( responseText );
 };
-wayscript.onError = function( statusText ) {
-  console.log( statusText );
+wayscript.onError = function( responseText ) {
+  console.log( responseText );
 };
-wayscript.runProgram( programId );
+wayscript.runProgram( programId ).onSuccess( onSuccess ).onError( onError );
 ```
