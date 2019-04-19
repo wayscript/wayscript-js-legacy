@@ -1,6 +1,6 @@
 # [<img src="https://user-images.githubusercontent.com/31461850/53454621-a1b39500-39dc-11e9-9b3c-276451d42437.png" width="155px" alt="WayScript" align="center">](https://wayscript.com) JS
 
-[![npm version](https://img.shields.io/npm/v/wayscript.svg)](https://www.npmjs.com/package/wayscript/) [![CircleCI Status](https://circleci.com/gh/wayscript/wayscript-js/tree/master.svg?style=shield)](https://circleci.com/gh/wayscript/wayscript-js/tree/master)
+[![npm version](https://img.shields.io/npm/v/wayscript.svg?color=blue)](https://www.npmjs.com/package/wayscript/) [![CircleCI Status](https://circleci.com/gh/wayscript/wayscript-js/tree/master.svg?style=shield)](https://circleci.com/gh/wayscript/wayscript-js/tree/master)
 
 ### A new way to build software.
 
@@ -21,7 +21,7 @@ npm install wayscript
 Or load directly from CDN:
 
 ```html
-<script src="https://cdn.wayscript.com/static/js/api/wayscript.0.0.1.min.js"></script>
+<script src="https://cdn.wayscript.com/static/js/api/wayscript.0.0.3.min.js"></script>
 ```
 
 ## Basic Usage
