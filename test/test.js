@@ -1,5 +1,5 @@
 const expect = require( 'chai' ).expect,
-    wayscript = require( '../js/wayscript' );
+    wayscript = require( '../' );
 
 describe( 'wayscript', function () {
     const dummy_api_key = "_DUMMY_API_KEY_DUMMY_API_KEY_DUMMY_API_KEY_";
