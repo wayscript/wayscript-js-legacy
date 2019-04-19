@@ -42,10 +42,10 @@ let variables = [ 'one', 'two', 'three' ];
 wayscript.runProgram( programId, variables );
 
 // Handle the response
-wayscript.onSuccess = function( responseText ) {
+let onSuccess = function( responseText ) {
   console.log( responseText );
 };
-wayscript.onError = function( responseText ) {
+let onError = function( responseText ) {
   console.log( responseText );
 };
 wayscript.runProgram( programId ).onSuccess( onSuccess ).onError( onError );
