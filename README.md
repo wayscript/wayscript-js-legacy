@@ -41,13 +41,7 @@ wayscript.runProgram( programId );
 let variables = [ 'one', 'two', 'three' ];
 wayscript.runProgram( programId, variables );
 
-// Run a program without variables
-wayscript.runProgram( programId, [ ] );
-
-// Run a program with variables
-wayscript.runProgram( programId, variables );
-
-// Get the response (synchronously or asynchronously)
+// Handle the response
 wayscript.onSuccess = function( responseText ) {
   console.log( responseText );
 };
