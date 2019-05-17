@@ -45,7 +45,7 @@ describe( 'wayscript', function () {
             done();
         };
 
-        const onSuccess = function onError( text ) {
+        const onSuccess = function onSuccess( text ) {
         };
 
         let response = wayscript.runProgram( program_id, variables )
@@ -54,5 +54,7 @@ describe( 'wayscript', function () {
 
         expect( response._onError ).to.be.equal( onError );
         expect( response._onSuccess ).to.be.equal( onSuccess );
+        expect( response.requestParams ).to.be.equal( '?api_key=' + dummy_api_key +'&program_id=' + program_id +
+            '&variables=' + variables[ 0 ] + '&variables=' + variables[ 1 ] + '&variables=' + variables[ 2 ] );
     } );
 } );

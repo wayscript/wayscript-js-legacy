@@ -28,7 +28,9 @@
         let params = '?api_key=' + wayScript.apiKey + '&program_id=' + programId;
 
         if ( variables && variables.length ) {
-            params += '&variables=' + variables;
+            for ( let variable of variables ) {
+                params += '&variables=' + variable;
+            }
         }
 
         return _post( params );
@@ -41,6 +43,7 @@
         xhr.setRequestHeader( "X-WayScript-Api", "javascript" );
 
         const response = {};
+        response.requestParams = params;
 
         response.onSuccess = function( func ) {
             response._onSuccess = func;
