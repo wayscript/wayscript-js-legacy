@@ -51,6 +51,8 @@ let onError = function( responseText ) {
 wayscript.runProgram( programId ).onSuccess( onSuccess ).onError( onError );
 ```
 
-## Example App
+## Example Apps
 
-To see an example of the WayScript npm package in action, check out [node-to-python-example](https://github.com/wayscript/node-to-python-example).
+[Run a Python script from your node app](https://github.com/wayscript/node-to-python-example)
+
+[Send an email using Gmail from your node app](https://github.com/wayscript/node-to-gmail-example)
