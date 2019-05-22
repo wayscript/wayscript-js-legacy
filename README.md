@@ -53,6 +53,6 @@ wayscript.runProgram( programId ).onSuccess( onSuccess ).onError( onError );
 
 ## Example Apps
 
-[Run a Python script from your node app](https://github.com/wayscript/node-to-python-example)
+- [Run a Python script from your node app](https://github.com/wayscript/node-to-python-example)
 
-[Send an email using Gmail from your node app](https://github.com/wayscript/node-to-gmail-example)
+- [Send an email using Gmail from your node app](https://github.com/wayscript/node-to-gmail-example)
