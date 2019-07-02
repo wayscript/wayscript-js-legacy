@@ -37,9 +37,13 @@ wayscript.apiKey = 'YOUR_API_KEY';
 let programId = 1234;
 wayscript.runProgram( programId );
 
-// Pass variables to a program
+// Pass variables to a program (optional)
 let variables = [ 'one', 'two', 'three' ];
 wayscript.runProgram( programId, variables );
+
+// Run a specific function within your program (optional)
+let functionName = 'My Function';
+wayscript.runProgram( programId, variables, functionName );
 
 // Handle the response
 let onSuccess = function( responseText ) {
@@ -50,6 +54,14 @@ let onError = function( responseText ) {
 };
 wayscript.runProgram( programId ).onSuccess( onSuccess ).onError( onError );
 ```
+
+⭐ In order to run a program using the WayScript Python API, you must first add an active [Webhook Trigger](https://wayscript.com/documentation/trigger/webhook_trigger) to that program.
+
+### Running a specific function
+
+- The function you specify MUST have an active [Webhook Trigger](https://wayscript.com/documentation/trigger/webhook_trigger).
+- If you do not specify a function name in your request and your program has ***one*** function with a Webhook Trigger, the function with the Webhook Trigger will run.
+- If you do not specify a function name in your request and your program has ***multiple*** functions with Webhook Triggers, you will be asked to specify which function you would like to run.
 
 ## Example Apps
 

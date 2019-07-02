@@ -20,7 +20,7 @@
 
     wayScript.apiKey = '';
 
-    wayScript.runProgram = function ( programId, variables ) {
+    wayScript.runProgram = function ( programId, variables, functionName ) {
         if ( !wayScript.apiKey || wayScript.apiKey.length !== 43 ){
             throw new Error( 'The API Key provided is not valid.' );
         }
@@ -29,8 +29,12 @@
 
         if ( variables && variables.length ) {
             for ( let variable of variables ) {
-                params += '&variables=' + variable;
+                params += '&variables=' + encodeURIComponent( variable );
             }
+        }
+
+        if ( functionName && functionName.length ) {
+            params += '&function=' + encodeURIComponent( functionName );
         }
 
         return _post( params );

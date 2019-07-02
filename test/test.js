@@ -4,7 +4,7 @@ const expect = require( 'chai' ).expect,
 describe( 'wayscript', function () {
     const dummy_api_key = "_DUMMY_API_KEY_DUMMY_API_KEY_DUMMY_API_KEY_";
     const program_id = 1234;
-    const variables = [ 'one', 'two', 'three' ];
+    const variables = [ 'one,', 'two&', 'three?' ];
 
     it( 'should allow api key assignment', function () {
         expect( wayscript.apiKey ).to.be.equal( '' );
@@ -39,6 +39,18 @@ describe( 'wayscript', function () {
         } ).to.not.throw();
     } );
 
+    it( 'should run program with function', function () {
+        expect( function () {
+            wayscript.runProgram( program_id, [], 'My Function' );
+        } ).to.not.throw();
+    } );
+
+    it( 'should run program with function and variables', function () {
+        expect( function () {
+            wayscript.runProgram( program_id, variables, 'My Function' );
+        } ).to.not.throw();
+    } );
+
     it( 'should allow onerror/onsuccess assignment', function ( done ) {
         const onError = function onError( text ) {
             expect( text ).to.be.equal( '{"Error":"Invalid API key."}' );
@@ -48,13 +60,13 @@ describe( 'wayscript', function () {
         const onSuccess = function onSuccess( text ) {
         };
 
-        let response = wayscript.runProgram( program_id, variables )
+        let response = wayscript.runProgram( program_id, variables, 'My Function' )
             .onError( onError )
             .onSuccess( onSuccess );
 
         expect( response._onError ).to.be.equal( onError );
         expect( response._onSuccess ).to.be.equal( onSuccess );
         expect( response.requestParams ).to.be.equal( '?api_key=' + dummy_api_key +'&program_id=' + program_id +
-            '&variables=' + variables[ 0 ] + '&variables=' + variables[ 1 ] + '&variables=' + variables[ 2 ] );
+            '&variables=one%2C&variables=two%26&variables=three%3F&function=My%20Function' );
     } );
 } );
