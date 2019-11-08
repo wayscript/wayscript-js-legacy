@@ -19,35 +19,35 @@
     const wayScript = {};
 
     wayScript.apiKey = '';
+    wayScript.username = '';
+    wayScript.password = '';
 
-    wayScript.runProgram = function ( programId, variables, functionName ) {
-        if ( !wayScript.apiKey || wayScript.apiKey.length !== 43 ){
-            throw new Error( 'The API Key provided is not valid.' );
-        }
+    wayScript.run = function ( programId, endpoint = '', query_params = null, body_params = null ) {
+        let query_param_str = '';
+        endpoint = endpoint || '';
 
-        let params = '?api_key=' + wayScript.apiKey + '&program_id=' + programId;
-
-        if ( variables && variables.length ) {
-            for ( let variable of variables ) {
-                params += '&variables=' + encodeURIComponent( variable );
+        if ( query_params ) {
+            for ( let [key, value] of Object.entries( query_params ) ) {
+                query_param_str += query_param_str.length > 0 ? '&' : '?';
+                query_param_str += encodeURIComponent( key ) + '=' + encodeURIComponent( value );
             }
         }
 
-        if ( functionName && functionName.length ) {
-            params += '&function=' + encodeURIComponent( functionName );
-        }
-
-        return _post( params );
+        return _post( programId, endpoint, query_param_str, body_params );
     };
 
-    const _post = function ( params ) {
+    const _post = function ( program_id, endpoint, query_param_str, body_params ) {
         let xhr = new root.XMLHttpRequest();
-        xhr.open( "POST", 'https://wayscript.com/api' + params );
+        xhr.open( "POST", 'https://' + program_id + '.wayscript.com/' + endpoint + query_param_str );
         xhr.setRequestHeader( "Content-Type", "application/json" );
         xhr.setRequestHeader( "X-WayScript-Api", "javascript" );
 
+        const auth_header = _get_auth_header();
+        if ( auth_header ) xhr.setRequestHeader( "Authorization", auth_header );
+
         const response = {};
-        response.requestParams = params;
+        response.requestParams = query_param_str;
+        response.requestBody = body_params;
 
         response.onSuccess = function( func ) {
             response._onSuccess = func;
@@ -71,9 +71,26 @@
             }
         };
 
-        xhr.send();
+        if ( body_params ) {
+            xhr.send( JSON.stringify( body_params ) );
+        } else {
+            xhr.send();
+        }
 
         return response;
+    };
+
+    const _get_auth_header = function() {
+        if ( wayScript.apiKey ) {
+            if ( wayScript.apiKey.length !== 43 ) {
+                throw new Error( 'The API Key provided is not valid.' );
+            }
+            return 'Bearer ' + wayScript.apiKey;
+        }
+        else if ( wayScript.username && wayScript.password ) {
+            return 'Basic ' + btoa( wayScript.username + ':' + wayScript.password );
+        }
+        return null;
     };
 
     return wayScript;

@@ -1,6 +1,6 @@
 {
   "name": "wayscript",
-  "version": "0.0.8",
+  "version": "0.1.0",
   "description": "WayScript gives you flexible building blocks to seamlessly integrate, automate and host tools in the cloud.",
   "main": "index.js",
   "directories": {
