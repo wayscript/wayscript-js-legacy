@@ -2,9 +2,9 @@ const expect = require( 'chai' ).expect,
     wayscript = require( '../' );
 
 describe( 'wayscript', function () {
-    const dummy_api_key = "_DUMMY_API_KEY_DUMMY_API_KEY_DUMMY_API_KEY_";
-    const program_id = 1234;
-    const variables = [ 'one,', 'two&', 'three?' ];
+    const DUMMY_API_KEY = "_DUMMY_API_KEY_DUMMY_API_KEY_DUMMY_API_KEY_";
+    const PROGRAM_ID = 1234;
+    const PARAMS = { 'var1': 'one,', 'var2': 'two&', 'var3': 'three?' };
 
     it( 'should allow api key assignment', function () {
         expect( wayscript.apiKey ).to.be.equal( '' );
@@ -12,42 +12,63 @@ describe( 'wayscript', function () {
         expect( wayscript.apiKey ).to.be.equal( 'foobar' );
     } );
 
+    it( 'should allow username and password assignment', function () {
+        expect( wayscript.username ).to.be.equal( '' );
+        expect( wayscript.password ).to.be.equal( '' );
+        wayscript.username = 'captain@wayscript.com';
+        wayscript.password = 'letmein';
+        expect( wayscript.username ).to.be.equal( 'captain@wayscript.com' );
+        expect( wayscript.password ).to.be.equal( 'letmein' );
+    } );
+
     it( 'should throw on invalid api key', function () {
         wayscript.apiKey = 'foobar';
         expect( wayscript.apiKey ).to.be.equal( 'foobar' );
         expect( function () {
-            wayscript.runProgram();
+            wayscript.run();
         } ).to.throw( 'The API Key provided is not valid.' );
     } );
 
     it( 'should run program', function () {
-        wayscript.apiKey = dummy_api_key;
+        wayscript.apiKey = DUMMY_API_KEY;
         expect( function () {
-            wayscript.runProgram( program_id );
+            wayscript.run( PROGRAM_ID );
         } ).to.not.throw();
     } );
 
-    it( 'should run program with variables', function () {
+    it( 'should run program with query params', function () {
         expect( function () {
-            wayscript.runProgram( program_id, variables );
+            wayscript.run( PROGRAM_ID, query_params = PARAMS );
         } ).to.not.throw();
     } );
 
-    it( 'should run program with empty variables', function () {
+    it( 'should run program with empty query params', function () {
         expect( function () {
-            wayscript.runProgram( program_id, [] );
+            wayscript.run( PROGRAM_ID, {} );
         } ).to.not.throw();
     } );
 
-    it( 'should run program with function', function () {
+    it( 'should run program with body params', function () {
         expect( function () {
-            wayscript.runProgram( program_id, [], 'My Function' );
+            wayscript.run( PROGRAM_ID, body_params = PARAMS );
         } ).to.not.throw();
     } );
 
-    it( 'should run program with function and variables', function () {
+    it( 'should run program with empty body params', function () {
         expect( function () {
-            wayscript.runProgram( program_id, variables, 'My Function' );
+            wayscript.run( PROGRAM_ID, {} );
+        } ).to.not.throw();
+    } );
+
+    it( 'should run program with endpoint', function () {
+        expect( function () {
+            wayscript.run( PROGRAM_ID, 'My%20Function' );
+        } ).to.not.throw();
+    } );
+
+    it( 'should run program with endpoint and params', function () {
+        expect( function () {
+            wayscript.run( PROGRAM_ID, 'My%20Function', PARAMS, PARAMS );
         } ).to.not.throw();
     } );
 
@@ -60,13 +81,13 @@ describe( 'wayscript', function () {
         const onSuccess = function onSuccess( text ) {
         };
 
-        let response = wayscript.runProgram( program_id, variables, 'My Function' )
+        let response = wayscript.run( PROGRAM_ID, 'My Function', PARAMS, PARAMS )
             .onError( onError )
             .onSuccess( onSuccess );
 
         expect( response._onError ).to.be.equal( onError );
         expect( response._onSuccess ).to.be.equal( onSuccess );
-        expect( response.requestParams ).to.be.equal( '?api_key=' + dummy_api_key +'&program_id=' + program_id +
-            '&variables=one%2C&variables=two%26&variables=three%3F&function=My%20Function' );
+        expect( response.requestParams ).to.be.equal( '?var1=one%2C&var2=two%26&var3=three%3F' );
+        expect( response.requestBody ).to.be.equal( PARAMS );
     } );
 } );

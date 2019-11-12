@@ -24,7 +24,7 @@
 
     wayScript.run = function ( programId, endpoint = '', query_params = null, body_params = null ) {
         let query_param_str = '';
-        endpoint = endpoint || '';
+        endpoint = encodeURIComponent( endpoint || '' );
 
         if ( query_params ) {
             for ( let [key, value] of Object.entries( query_params ) ) {
