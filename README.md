@@ -2,13 +2,11 @@
 
 [![npm version](https://img.shields.io/npm/v/wayscript.svg?color=blue)](https://www.npmjs.com/package/wayscript/) [![CircleCI Status](https://circleci.com/gh/wayscript/wayscript-js/tree/master.svg?style=shield)](https://circleci.com/gh/wayscript/wayscript-js/tree/master)
 
-### A new way to build software.
+### A rapid scripting platform for developers.
 
-* WayScript gives you flexible building blocks to seamlessly integrate, automate and host tools in the cloud. Unlock new potential with drag and drop programming.
+WayScript allows you to run Python in the cloud, and seamlessly integrate with your favorite APIs.
 
-* Instantly connect to hundreds of datasets including GitHub, Twitter, databases, ecommerce data, or build your own integration. WayScript can read data from Excel, Google Sheets, and an evergrowing list of third-party APIs.
-
-* Seamlessly migrate to the cloud: Generate interfaces, instantly share, and run via event-based triggering. 
+![Trigger scripts on any event or schedule.](https://user-images.githubusercontent.com/31461850/68791693-af5a8a80-05fe-11ea-86dd-32ccc9641bbe.png)
 
 ## Quick Start
 
@@ -32,17 +30,17 @@ Or load directly from CDN:
 
 3. If you have specified a [custom endpoint](https://docs.wayscript.com/library/triggers/http-trigger#endpoints), you will need the name of that endpoint as well.
 
-4. If your HTTP Trigger takes query parameters and/or JSON Body Parameters, you can pass those as a dictionary of query_params and/or body_params to your program.
+4. If your HTTP Trigger takes query parameters and/or JSON Body Parameters, you can pass those as a dictionary using the params and/or data arguments, respectively.
 
 5. Run your WayScript programs from your JavaScript code:
 
 ```javascript
-// Run using your api key
-wayscript.apiKey = 'YOUR_API_KEY';
-
-// Or with a custom username and password
+// If your program requires a password to run, supply those credentials when creating the client
 wayscript.username = 'Username';
 wayscript.password = 'Pa$$word';
+
+// If your program requires a password to run, you can instead supply your API Key when creating the client
+wayscript.apiKey = 'YOUR_API_KEY';
 
 // Run a program by id
 let programId = 1234;
@@ -50,15 +48,15 @@ wayscript.run( programId );
 
 // Pass query parameters to a program (optional)
 let query_params = { 'var1': 'one', 'var2': 'two', 'var3': 'three' };
-wayscript.run( programId, query_params = query_params );
+wayscript.run( programId, params = query_params );
 
 // Run a specific endpoint within your script (optional)
 let endpoint = 'MyEndpoint';
-wayscript.run( programId, endpoint, query_params = query_params );
+wayscript.run( programId, endpoint, params = query_params );
 
 // Pass data within the body of your request (optional)
 let body_params = { 'var4': 'four', 'var5': 'five', 'bar6': 'six' };
-wayscript.run( programId, endpoint, query_params, body_params = body_params );
+wayscript.run( programId, endpoint, params = query_params, data = body_params );
 
 // Handle the response
 let onSuccess = function( responseText ) {

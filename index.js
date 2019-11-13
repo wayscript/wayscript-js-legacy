@@ -22,18 +22,18 @@
     wayScript.username = '';
     wayScript.password = '';
 
-    wayScript.run = function ( programId, endpoint = '', query_params = null, body_params = null ) {
+    wayScript.run = function ( programId, endpoint = '', params = null, data = null ) {
         let query_param_str = '';
         endpoint = encodeURIComponent( endpoint || '' );
 
-        if ( query_params ) {
-            for ( let [key, value] of Object.entries( query_params ) ) {
+        if ( params ) {
+            for ( let [key, value] of Object.entries( params ) ) {
                 query_param_str += query_param_str.length > 0 ? '&' : '?';
                 query_param_str += encodeURIComponent( key ) + '=' + encodeURIComponent( value );
             }
         }
 
-        return _post( programId, endpoint, query_param_str, body_params );
+        return _post( programId, endpoint, query_param_str, data );
     };
 
     const _post = function ( program_id, endpoint, query_param_str, body_params ) {
