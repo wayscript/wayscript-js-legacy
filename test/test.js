@@ -75,7 +75,7 @@ describe( 'wayscript', function () {
 
     it( 'should allow onerror/onsuccess assignment', function ( done ) {
         const onError = function onError( text ) {
-            expect( text ).to.be.equal( '{"Error":"Invalid API key."}' );
+            expect( text ).to.be.equal( '{"error":"Script 1234 does not exist or does not have an active HTTP Trigger for this endpoint"}' );
             done();
         };
 
