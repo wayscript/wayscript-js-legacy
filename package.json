@@ -38,6 +38,7 @@
     "mocha": "^6.1.4"
   },
   "dependencies": {
+    "buffer": "^5.4.3",
     "xmlhttprequest": "^1.8.0"
   }
 }

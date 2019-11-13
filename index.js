@@ -7,13 +7,13 @@
 
 ( function ( root, factory ) {
     if ( typeof define === 'function' && define.amd ) {
-        define( factory( root ) );
+        define( [ 'xmlhttprequest', 'buffer' ], factory  );
     } else if ( typeof exports === 'object' ) {
-        module.exports = factory( require( 'xmlhttprequest' ) );
+        module.exports = factory( require( 'xmlhttprequest' ).XMLHttpRequest, require( 'buffer' ).Buffer );
     } else {
-        root.wayscript = factory( root );
+        root.wayscript = factory( root.XMLHttpRequest, root.Buffer );
     }
-} )( typeof global !== "undefined" ? global : this.window || this.global, function ( root ) {
+} )( typeof global !== "undefined" ? global : this.window || this.global, function ( XMLHttpRequest, Buffer ) {
     'use strict';
 
     const wayScript = {};
@@ -37,8 +37,9 @@
     };
 
     const _post = function ( program_id, endpoint, query_param_str, body_params ) {
-        let xhr = new root.XMLHttpRequest();
-        xhr.open( "POST", 'https://' + program_id + '.wayscript.com/' + endpoint + query_param_str );
+        let xhr = new XMLHttpRequest();
+        const request_url = 'https://' + program_id + '.wayscript.com/' + endpoint + query_param_str;
+        xhr.open( "POST", request_url );
         xhr.setRequestHeader( "Content-Type", "application/json" );
         xhr.setRequestHeader( "X-WayScript-Api", "javascript" );
 
@@ -46,6 +47,8 @@
         if ( auth_header ) xhr.setRequestHeader( "Authorization", auth_header );
 
         const response = {};
+        response.requestUrl = request_url;
+        response.authorizationHeader = auth_header;
         response.requestParams = query_param_str;
         response.requestBody = body_params;
 
@@ -71,11 +74,7 @@
             }
         };
 
-        if ( body_params ) {
-            xhr.send( JSON.stringify( body_params ) );
-        } else {
-            xhr.send();
-        }
+        xhr.send( JSON.stringify( body_params || { } ) );
 
         return response;
     };
@@ -88,9 +87,17 @@
             return 'Bearer ' + wayScript.apiKey;
         }
         else if ( wayScript.username && wayScript.password ) {
-            return 'Basic ' + btoa( wayScript.username + ':' + wayScript.password );
+            return 'Basic ' + _get_base64_string( wayScript.username + ':' + wayScript.password );
         }
         return null;
+    };
+
+    const _get_base64_string = function( str ) {
+        if ( typeof btoa === "function" ) {
+            return btoa( str );
+        } else {
+            return Buffer.from( str ).toString( 'base64' );
+        }
     };
 
     return wayScript;
