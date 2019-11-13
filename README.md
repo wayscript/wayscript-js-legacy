@@ -2,13 +2,11 @@
 
 [![npm version](https://img.shields.io/npm/v/wayscript.svg?color=blue)](https://www.npmjs.com/package/wayscript/) [![CircleCI Status](https://circleci.com/gh/wayscript/wayscript-js/tree/master.svg?style=shield)](https://circleci.com/gh/wayscript/wayscript-js/tree/master)
 
-### A new way to build software.
+### A rapid scripting platform for developers.
 
-* WayScript gives you flexible building blocks to seamlessly integrate, automate and host tools in the cloud. Unlock new potential with drag and drop programming.
+WayScript allows you to run Python in the cloud, and seamlessly integrate with your favorite APIs.
 
-* Instantly connect to hundreds of datasets including GitHub, Twitter, databases, ecommerce data, or build your own integration. WayScript can read data from Excel, Google Sheets, and an evergrowing list of third-party APIs.
-
-* Seamlessly migrate to the cloud: Generate interfaces, instantly share, and run via event-based triggering. 
+![Trigger scripts on any event or schedule.](https://user-images.githubusercontent.com/31461850/68791693-af5a8a80-05fe-11ea-86dd-32ccc9641bbe.png)
 
 ## Quick Start
 
@@ -21,29 +19,44 @@ npm install wayscript
 Or load directly from CDN:
 
 ```html
-<script src="https://cdn.wayscript.com/static/js/api/wayscript.0.0.8.js"></script>
+<script src="https://cdn.wayscript.com/static/js/api/wayscript.0.1.0.js"></script>
 ```
 
 ## Basic Usage
 
-1. Get the API Key from your WayScript user profile page
+1. Add one or more [HTTP Triggers](https://docs.wayscript.com/library/triggers/http-trigger) to your script.
 
-2. Run WayScript programs from your JavaScript code:
+2. If you have a [password-protected endpoint](https://docs.wayscript.com/library/triggers/http-trigger#password-protect-your-endpoints), obtain your API key or the credentials you would like to use.
+
+3. If you have specified a [custom endpoint](https://docs.wayscript.com/library/triggers/http-trigger#endpoints), you will need to pass the name of that endpoint in your api call.
+
+4. If your HTTP Trigger takes [query parameters](https://docs.wayscript.com/library/triggers/http-trigger#request-query-parameters) and/or [JSON body parameters](https://docs.wayscript.com/library/triggers/http-trigger#request-json-body-parameters), you can pass those as a dictionary using the `params` and/or `data` arguments, respectively. (See [HTTP Trigger Outputs](https://docs.wayscript.com/library/triggers/http-trigger#outputs) for more information.)
+
+5. Run your WayScript programs from your JavaScript code:
 
 ```javascript
+// If your program requires a password to run, supply those credentials when creating the client
+wayscript.username = 'Username';
+wayscript.password = 'Pa$$word';
+
+// If your program requires a password to run, you can instead supply your API Key when creating the client
 wayscript.apiKey = 'YOUR_API_KEY';
 
 // Run a program by id
 let programId = 1234;
-wayscript.runProgram( programId );
+wayscript.run( programId );
 
-// Pass variables to a program (optional)
-let variables = [ 'one', 'two', 'three' ];
-wayscript.runProgram( programId, variables );
+// Pass query parameters to a program (optional)
+let query_params = { 'var1': 'one', 'var2': 'two', 'var3': 'three' };
+wayscript.run( programId, params = query_params );
 
-// Run a specific function within your program (optional)
-let functionName = 'My Function';
-wayscript.runProgram( programId, variables, functionName );
+// Run a specific endpoint within your script (optional)
+let endpoint = 'MyEndpoint';
+wayscript.run( programId, endpoint, params = query_params );
+
+// Pass data within the body of your request (optional)
+let body_params = { 'var4': 'four', 'var5': 'five', 'bar6': 'six' };
+wayscript.run( programId, endpoint, params = query_params, data = body_params );
 
 // Handle the response
 let onSuccess = function( responseText ) {
@@ -52,16 +65,8 @@ let onSuccess = function( responseText ) {
 let onError = function( responseText ) {
   console.log( responseText );
 };
-wayscript.runProgram( programId ).onSuccess( onSuccess ).onError( onError );
+wayscript.run( programId ).onSuccess( onSuccess ).onError( onError );
 ```
-
-⭐ In order to run a program using the WayScript Python API, you must first add an active [Webhook Trigger](https://wayscript.com/documentation/trigger/webhook_trigger) to that program.
-
-### Running a specific function
-
-- The function you specify MUST have an active [Webhook Trigger](https://wayscript.com/documentation/trigger/webhook_trigger).
-- If you do not specify a function name in your request and your program has ***one*** function with a Webhook Trigger, the function with the Webhook Trigger will run.
-- If you do not specify a function name in your request and your program has ***multiple*** functions with Webhook Triggers, you will be asked to specify which function you would like to run.
 
 ## Example Apps
 
