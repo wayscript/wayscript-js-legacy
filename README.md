@@ -19,7 +19,7 @@ npm install wayscript
 Or load directly from CDN:
 
 ```html
-<script src="https://cdn.wayscript.com/static/js/api/wayscript.0.1.0.js"></script>
+<script src="https://cdn.wayscript.com/static/js/api/wayscript.0.1.1.js"></script>
 ```
 
 ## Basic Usage

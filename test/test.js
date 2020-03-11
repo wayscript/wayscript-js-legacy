@@ -75,7 +75,7 @@ describe( 'wayscript', function () {
 
     it( 'should allow onerror/onsuccess assignment', function ( done ) {
         const onError = function onError( text ) {
-            expect( text ).to.be.equal( '{"error":"Script 1234 does not exist or does not have an active HTTP Trigger for this endpoint"}' );
+            expect( text ).to.contain( '{"Error":"You must copy this script in order for it to run."}' );
             done();
         };
 
@@ -89,7 +89,7 @@ describe( 'wayscript', function () {
         expect( response._onError ).to.be.equal( onError );
         expect( response._onSuccess ).to.be.equal( onSuccess );
         expect( response.authorizationHeader ).to.be.equal( 'Bearer _DUMMY_API_KEY_DUMMY_API_KEY_DUMMY_API_KEY_' );
-        expect( response.requestUrl ).to.be.equal( 'https://1234.wayscript.com/My%20Function?var1=one%2C&var2=two%26&var3=three%3F' )
+        expect( response.requestUrl ).to.be.equal( 'https://1234.wayscript.io/My%20Function?var1=one%2C&var2=two%26&var3=three%3F' )
         expect( response.requestParams ).to.be.equal( '?var1=one%2C&var2=two%26&var3=three%3F' );
         expect( response.requestBody ).to.be.equal( BODY_PARAMS );
     } );

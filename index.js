@@ -38,7 +38,7 @@
 
     const _post = function ( program_id, endpoint, query_param_str, body_params ) {
         let xhr = new XMLHttpRequest();
-        const request_url = 'https://' + program_id + '.wayscript.com/' + endpoint + query_param_str;
+        const request_url = 'https://' + program_id + '.wayscript.io/' + endpoint + query_param_str;
         xhr.open( "POST", request_url );
         xhr.setRequestHeader( "Content-Type", "application/json" );
         xhr.setRequestHeader( "X-WayScript-Api", "javascript" );
