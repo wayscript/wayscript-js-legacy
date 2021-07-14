@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.1.2] - 2021-7-14
+### Changed
+- No-op. Now publishing to `wayscript-legacy` npm property.
+
 ## [0.1.1] - 2020-03-11
 ### Changed
 - Move endpoint from wayscript.com to wayscript.io
@@ -32,11 +36,12 @@ All notable changes to this project will be documented in this file.
 ## [0.0.3] - 2019-04-17
 ### Released SDK
 
-[Unreleased]: https://github.com/wayscript/wayscript-js/compare/0.1.1...HEAD
-[0.1.1]: https://github.com/wayscript/wayscript-js/compare/0.1.0...0.1.1
-[0.1.0]: https://github.com/wayscript/wayscript-js/compare/0.0.7...0.1.0
-[0.0.8]: https://github.com/wayscript/wayscript-js/compare/0.0.7...0.0.8
-[0.0.7]: https://github.com/wayscript/wayscript-js/compare/0.0.5...0.0.7
-[0.0.5]: https://github.com/wayscript/wayscript-js/compare/0.0.4...0.0.5
-[0.0.4]: https://github.com/wayscript/wayscript-js/compare/0.0.3...0.0.4
-[0.0.3]: https://github.com/wayscript/wayscript-js/releases/tag/0.0.3
+[Unreleased]: https://github.com/wayscript/wayscript-js-legacy/compare/0.1.2...HEAD
+[0.1.2]: https://github.com/wayscript/wayscript-js-legacy/compare/0.1.1...0.1.2
+[0.1.1]: https://github.com/wayscript/wayscript-js-legacy/compare/0.1.0...0.1.1
+[0.1.0]: https://github.com/wayscript/wayscript-js-legacy/compare/0.0.7...0.1.0
+[0.0.8]: https://github.com/wayscript/wayscript-js-legacy/compare/0.0.7...0.0.8
+[0.0.7]: https://github.com/wayscript/wayscript-js-legacy/compare/0.0.5...0.0.7
+[0.0.5]: https://github.com/wayscript/wayscript-js-legacy/compare/0.0.4...0.0.5
+[0.0.4]: https://github.com/wayscript/wayscript-js-legacy/compare/0.0.3...0.0.4
+[0.0.3]: https://github.com/wayscript/wayscript-js-legacy/releases/tag/0.0.3
