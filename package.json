@@ -1,5 +1,5 @@
 {
-  "name": "wayscript",
+  "name": "wayscript-legacy",
   "version": "0.1.1",
   "description": "WayScript gives you flexible building blocks to seamlessly integrate, automate and host tools in the cloud.",
   "main": "index.js",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wayscript/wayscript-js.git"
+    "url": "git+https://github.com/wayscript/wayscript-js-legacy.git"
   },
   "keywords": [
     "wayscript",
@@ -30,7 +30,7 @@
   "author": "Team WayScript",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/wayscript/wayscript-js/issues"
+    "url": "https://github.com/wayscript/wayscript-js-legacy/issues"
   },
   "homepage": "https://wayscript.com",
   "devDependencies": {
