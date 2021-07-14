@@ -19,7 +19,7 @@ npm install wayscript
 Or load directly from CDN:
 
 ```html
-<script src="https://cdn.wayscript.com/static/js/api/wayscript.0.1.1.js"></script>
+<script src="https://cdn.wayscript.com/static/js/api/wayscript-legacy.0.1.2.js"></script>
 ```
 
 ## Basic Usage
@@ -35,6 +35,8 @@ Or load directly from CDN:
 5. Run your WayScript programs from your JavaScript code:
 
 ```javascript
+wayscript = require('wayscript-legacy')
+
 // If your program requires a password to run, supply those credentials when creating the client
 wayscript.username = 'Username';
 wayscript.password = 'Pa$$word';
