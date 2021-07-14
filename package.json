@@ -1,6 +1,6 @@
 {
   "name": "wayscript-legacy",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "WayScript gives you flexible building blocks to seamlessly integrate, automate and host tools in the cloud.",
   "main": "index.js",
   "directories": {
