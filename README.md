@@ -35,6 +35,8 @@ Or load directly from CDN:
 5. Run your WayScript programs from your JavaScript code:
 
 ```javascript
+wayscript = require('wayscript-legacy')
+
 // If your program requires a password to run, supply those credentials when creating the client
 wayscript.username = 'Username';
 wayscript.password = 'Pa$$word';
