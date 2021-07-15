@@ -13,7 +13,7 @@ WayScript allows you to run Python in the cloud, and seamlessly integrate with y
 If you use npm:
 
 ```sh
-npm install wayscript
+npm install wayscript-legacy
 ```
 
 Or load directly from CDN:
