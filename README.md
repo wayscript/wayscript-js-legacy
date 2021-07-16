@@ -1,6 +1,6 @@
 # [<img src="https://user-images.githubusercontent.com/31461850/53454621-a1b39500-39dc-11e9-9b3c-276451d42437.png" width="155px" alt="WayScript" align="center">](https://wayscript.com) JS
 
-[![npm version](https://img.shields.io/npm/v/wayscript.svg?color=blue)](https://www.npmjs.com/package/wayscript/) [![CircleCI Status](https://circleci.com/gh/wayscript/wayscript-js/tree/master.svg?style=shield)](https://circleci.com/gh/wayscript/wayscript-js/tree/master)
+[![npm version](https://img.shields.io/npm/v/wayscript.svg?color=blue)](https://www.npmjs.com/package/wayscript-legacy/) [![CircleCI Status](https://circleci.com/gh/wayscript/wayscript-js-legacy/tree/master.svg?style=shield)](https://circleci.com/gh/wayscript/wayscript-js-legacy/tree/master)
 
 ### A rapid scripting platform for developers.
 
@@ -13,7 +13,7 @@ WayScript allows you to run Python in the cloud, and seamlessly integrate with y
 If you use npm:
 
 ```sh
-npm install wayscript
+npm install wayscript-legacy
 ```
 
 Or load directly from CDN:
